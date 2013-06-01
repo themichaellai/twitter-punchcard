@@ -5,6 +5,7 @@
     });
   };
 
+  //TODO: show start and end date ranges
   var getData = function(user, callback) {
     getUserTweets(user, function(tweets) {
       var counts = {};
@@ -29,6 +30,11 @@
       callback(data);
     });
   };
+  var toHumanHours = function(hourInt) {
+    var num = (hourInt == 0 || hourInt == 12) ? 12 : hourInt % 12;
+    var period = (hourInt / 12 >= 1) ? 'pm' : 'am';
+    return '' + num + period;
+  }
 
   $('#test').click(function() {
     getUserTweets('atmichaellai', function(tweets) {
@@ -69,7 +75,8 @@
         .attr('y', 0)
         .attr('dy', -3)
         .attr('text-anchor', 'middle')
-        .text(String);
+        .attr('font-size', 10)
+        .text(toHumanHours);
     var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
     chart.selectAll('.yrule')
       .data(y.ticks(7))
