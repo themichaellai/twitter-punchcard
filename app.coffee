@@ -19,6 +19,7 @@ if ('development' == app.get('env'))
   app.use(express.errorHandler())
 
 app.get('/', routes.index)
+app.get('/tweets/:user/:page.json', routes.get_timeline)
 
 http.createServer(app).listen(app.get('port'), ->
   console.log('Express server listening on port ' + app.get('port'))
