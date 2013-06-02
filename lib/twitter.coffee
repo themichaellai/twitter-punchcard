@@ -1,7 +1,17 @@
 OAuth = require('oauth').OAuth
-config = require '../config'
+config = undefined
+try
+  config = require '../config'
+catch err
+  config = {}
 
 twitter = module.exports
+
+
+accessToken = process.env.ACCESS_TOKEN || config.accessToken
+accessTokenSecret = process.env.ACCESS_TOKEN_SECRET || config.accessTokenSecret
+consumerKey = process.env.CONSUMER_KEY || config.consumerKey
+consumerSecret = process.env.CONSUMER_SECRET || config.consumerSecret
 
 oa = new OAuth('https://api.twitter.com/oauth/request_token',
   "https://api.twitter.com/oauth/access_token",
