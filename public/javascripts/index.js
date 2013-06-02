@@ -17,7 +17,8 @@
       if (tweets.length > 0) {
         dates = {
           'end': new Date(tweets[0].created_at),
-          'start': new Date(tweets[tweets.length - 1].created_at)
+          'start': new Date(tweets[tweets.length - 1].created_at),
+          'count': tweets.length
         };
       }
       _.each(tweets, function(tweet) {
@@ -81,6 +82,7 @@
   var populate = function(user, callback) {
     getData(user, function(data, dates) {
       if (data.length !== 0) {
+        $('#tweet-num').text(dates.count);
         $('#dates').text(dates.start.getMonth() + '/' + dates.start.getDate() + '/' + dates.start.getFullYear() + ' to ' + dates.end.getMonth() + '/' + dates.end.getDate() + '/' + dates.end.getFullYear());
         $('#date-range').slideDown();
         $('#errors').slideUp();

@@ -39,7 +39,7 @@ button {
 #loading, #date-range {
   display: none;
 }
-#dates {
+#dates, #tweet-num {
   display: inline;
 }
 #footer {
