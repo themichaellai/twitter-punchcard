@@ -42,3 +42,7 @@ button {
 #dates {
   display: inline;
 }
+#footer {
+  padding-top: 30px;
+  font-size: .75em;
+}
