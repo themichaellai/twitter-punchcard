@@ -1,8 +1,27 @@
 body {
-  padding: 50px;
+  padding: 25px 50px 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #333;
 }
 
 a {
   color: #00B7FF;
+}
+
+input[type="text"] {
+  background: #fafafa;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 0.5em;
+}
+input[type="text"]:focus {
+  -webkit-box-shadow: 0 0 5px #999999;
+  -moz-box-shadow: 0 0 5px #999999;
+  box-shadow: 0 0 5px #999999;
+}
+button {
+  line-height: 2.125em;
+  margin: 0 5px 1.25em;
+  background-color: #ccc;
+  border: 0;
 }
