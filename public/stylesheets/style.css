@@ -27,6 +27,7 @@ button {
 }
 #permalink {
   display: none;
+  margin-top: .5em;
 }
 #errors {
   display: none;
@@ -35,6 +36,9 @@ button {
 #chart {
   margin-left: -40px;
 }
-#loading {
+#loading, #date-range {
   display: none;
+}
+#dates {
+  display: inline;
 }

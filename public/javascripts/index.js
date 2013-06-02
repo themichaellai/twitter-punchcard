@@ -5,7 +5,6 @@
     });
   };
 
-  //TODO: show start and end date ranges
   var getData = function(user, callback) {
     getUserTweets(user, function(tweets) {
       var counts = {};
@@ -14,6 +13,12 @@
         for (var j=0; j < 24; j++) {
           counts[i][j] = 0;
         }
+      }
+      if (tweets.length > 0) {
+        dates = {
+          'end': new Date(tweets[0].created_at),
+          'start': new Date(tweets[tweets.length - 1].created_at)
+        };
       }
       _.each(tweets, function(tweet) {
         var date = new Date(tweet.created_at);
@@ -27,7 +32,7 @@
       });
 
       data = _.filter(data, function(d) { return d.count > 0; });
-      callback(data);
+      callback(data, dates);
     });
   };
   var toHumanHours = function(hourInt) {
@@ -74,8 +79,10 @@
       .text(function (d) { return days[parseInt(d, 10)]; });
 
   var populate = function(user, callback) {
-    getData(user, function(data) {
+    getData(user, function(data, dates) {
       if (data.length !== 0) {
+        $('#dates').text(dates.start.getMonth() + '/' + dates.start.getDate() + '/' + dates.start.getFullYear() + ' to ' + dates.end.getMonth() + '/' + dates.end.getDate() + '/' + dates.end.getFullYear());
+        $('#date-range').slideDown();
         $('#errors').slideUp();
         var max = _.max(data, function(d) { return d.count; }).count;
         r = d3.scale.linear()
