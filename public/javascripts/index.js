@@ -75,39 +75,48 @@
 
   var populate = function(user) {
     getData(user, function(data) {
-      var max = _.max(data, function(d) { return d.count; }).count;
-      r = d3.scale.linear()
-        .domain([0, max])
-        .range([0, w/48]);
+      if (data.length !== 0) {
+        $('#errors').slideUp();
+        var max = _.max(data, function(d) { return d.count; }).count;
+        r = d3.scale.linear()
+          .domain([0, max])
+          .range([0, w/48]);
 
-      circ = chart.selectAll('circle')
-        .data(data, function(d) { return "" + d.hour + d.day; });
+        circ = chart.selectAll('circle')
+          .data(data, function(d) { return "" + d.hour + d.day; });
 
-      circ.enter().append('circle')
-        .attr('cx', function(d) { return x(d.hour) + 15; })
-        .attr('cy', function(d) { return y(d.day) + w/24; })
-        .attr('r', function(d) { return 0; })
-        .style('fill', '#444');
+        circ.enter().append('circle')
+          .attr('cx', function(d) { return x(d.hour) + 15; })
+          .attr('cy', function(d) { return y(d.day) + w/24; })
+          .attr('r', function(d) { return 0; })
+          .style('fill', '#444');
 
-      circ.transition()
-        .duration(1000)
-        .attr('r', function(d) { return r(d.count); });
+        circ.transition()
+          .duration(1000)
+          .attr('r', function(d) { return r(d.count); });
 
-      circ.exit().transition()
-        .duration(1000)
-        .attr('r', function(d) { return 0; })
-        .remove('circle')
+        circ.exit().transition()
+          .duration(1000)
+          .attr('r', function(d) { return 0; })
+          .remove('circle');
+      } else {
+        $('#errors').text('Could not find any tweets for this user!').slideDown();
+      }
     });
+  };
+
+  var triggered = function() {
+    var user = $('#handle').val();
+    populate(user);
+    $('#permalink').html('<a href="?user=' + user + '">permalink</a> to this graph').fadeIn();
   };
   $('#handle').keyup(function(e){
     if (e.keyCode == 13) {
-      console.log($('#handle').val());
-      populate($('#handle').val());
+      triggered();
     }
   });
   $('#go').click(function() {
-    console.log($('#handle').val());
-    populate($('#handle').val());
+    triggered();
   });
 
 })(jQuery);

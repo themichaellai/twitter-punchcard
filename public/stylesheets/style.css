@@ -1,11 +1,11 @@
 body {
-  padding: 25px 50px 25px;
+  padding: 25px 85px 25px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #333;
 }
 
 a {
-  color: #00B7FF;
+  color: #333;
 }
 
 input[type="text"] {
@@ -24,4 +24,14 @@ button {
   margin: 0 5px 1.25em;
   background-color: #ccc;
   border: 0;
+}
+#permalink {
+  display: none;
+}
+#errors {
+  display: none;
+  color: red;
+}
+#chart {
+  margin-left: -40px;
 }

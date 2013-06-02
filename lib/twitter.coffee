@@ -16,6 +16,7 @@ twitter.getTimeline = (user, page, callback) ->
   oa.get("https://api.twitter.com/1.1/statuses/user_timeline.json?trim_user=1&count=#{page * 200}&screen_name=#{user}", config.accessToken, config.accessTokenSecret, (err, data) ->
     if (err)
       console.log err
+      callback('[]')
     else
       callback(data)
   )
