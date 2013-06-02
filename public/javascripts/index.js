@@ -73,7 +73,7 @@
       .attr('font-size', 10)
       .text(function (d) { return days[parseInt(d, 10)]; });
 
-  var populate = function(user) {
+  var populate = function(user, callback) {
     getData(user, function(data) {
       if (data.length !== 0) {
         $('#errors').slideUp();
@@ -103,11 +103,16 @@
         $('#errors').text('Could not find any tweets for this user!').slideDown();
       }
     });
+    if (callback)
+      callback();
   };
 
   var triggered = function() {
     var user = $('#handle').val();
-    populate(user);
+    $('#loading').fadeIn().css('display', 'inline-block');
+    populate(user, function() {
+      $('#loading').fadeOut();
+    });
     $('#permalink').html('<a href="/' + user + '">permalink</a> to this graph').fadeIn();
   };
   $('#handle').keyup(function(e){
@@ -120,7 +125,10 @@
   });
 
   if (window.paramUser) {
-    populate(window.paramUser);
+    $('#loading').fadeIn().css('display', 'inline-block');
+    populate(window.paramUser, function() {
+      $('#loading').fadeOut();
+    });
     $('#permalink').html('<a href="/' + window.paramUser + '">permalink</a> to this graph').fadeIn();
   }
 

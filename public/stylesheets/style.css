@@ -35,3 +35,6 @@ button {
 #chart {
   margin-left: -40px;
 }
+#loading {
+  display: none;
+}

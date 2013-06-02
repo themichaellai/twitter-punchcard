@@ -2,8 +2,10 @@ extends layout
 
 block content
   h1= title
-  input#handle(type='text', placeholder='Twitter Handle', value=user)
-  button#go Go
+  #input-contain
+    input#handle(type='text', placeholder='Twitter Handle', value=user)
+    button#go Go
+    #loading Loading...
   #errors
   #chart
   #permalink
