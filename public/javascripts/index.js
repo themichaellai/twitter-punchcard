@@ -31,20 +31,10 @@
     });
   };
   var toHumanHours = function(hourInt) {
-    var num = (hourInt == 0 || hourInt == 12) ? 12 : hourInt % 12;
+    var num = (hourInt === 0 || hourInt == 12) ? 12 : hourInt % 12;
     var period = (hourInt / 12 >= 1) ? 'pm' : 'am';
     return '' + num + period;
-  }
-
-  $('#test').click(function() {
-    getUserTweets('atmichaellai', function(tweets) {
-      var counts = [];
-      _.each(tweets, function(tweet) {
-        var date = new Date(tweet.created_at);
-        counts.push({'hour': date.getHours(), 'day': date.getDay()});
-      });
-    });
-  });
+  };
 
   var data = [];
   var w = 1000, h = 700;
@@ -77,7 +67,7 @@
         .attr('text-anchor', 'middle')
         .attr('font-size', 10)
         .text(toHumanHours);
-    var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat']
+    var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
     chart.selectAll('.yrule')
       .data(y.ticks(7))
       .enter().append('text')
