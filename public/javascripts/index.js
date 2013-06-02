@@ -108,7 +108,7 @@
   var triggered = function() {
     var user = $('#handle').val();
     populate(user);
-    $('#permalink').html('<a href="?user=' + user + '">permalink</a> to this graph').fadeIn();
+    $('#permalink').html('<a href="/' + user + '">permalink</a> to this graph').fadeIn();
   };
   $('#handle').keyup(function(e){
     if (e.keyCode == 13) {
@@ -118,5 +118,10 @@
   $('#go').click(function() {
     triggered();
   });
+
+  if (window.paramUser) {
+    populate(window.paramUser);
+    $('#permalink').html('<a href="/' + window.paramUser + '">permalink</a> to this graph').fadeIn();
+  }
 
 })(jQuery);

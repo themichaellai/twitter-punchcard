@@ -2,9 +2,11 @@ extends layout
 
 block content
   h1= title
-  input#handle(type='text', placeholder='Twitter Handle')
+  input#handle(type='text', placeholder='Twitter Handle', value=user)
   button#go Go
   #errors
   #chart
   #permalink
+  script(type='text/javascript')
+    window.paramUser = '#{user}';
   script(src='/javascripts/index.js')
