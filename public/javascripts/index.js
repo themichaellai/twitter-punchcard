@@ -83,7 +83,7 @@
     getData(user, function(data, dates) {
       if (data.length !== 0) {
         $('#tweet-num').text(dates.count);
-        $('#dates').text(dates.start.getMonth() + '/' + dates.start.getDate() + '/' + dates.start.getFullYear() + ' to ' + dates.end.getMonth() + '/' + dates.end.getDate() + '/' + dates.end.getFullYear());
+        $('#dates').text((dates.start.getMonth() + 1) + '/' + dates.start.getDate() + '/' + dates.start.getFullYear() + ' to ' + (dates.end.getMonth() + 1) + '/' + dates.end.getDate() + '/' + dates.end.getFullYear());
         $('#date-range').slideDown();
         $('#errors').slideUp();
         var max = _.max(data, function(d) { return d.count; }).count;

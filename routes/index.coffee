@@ -1,6 +1,5 @@
 twitter = require '../lib/twitter'
 exports.index = (req, res) ->
-  console.log req.params
   res.render('index', {
     title: 'Twitter Punchcard',
     user: req.params.user
